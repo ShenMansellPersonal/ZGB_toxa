@@ -183,6 +183,16 @@ void SpriteManagerUpdate() {
 			if(THIS == scroll_target)
 				RefreshScroll();
 
+	
+		}
+	}
+
+	// Draw all the sprites after updates, so we can have nutmeg update her bow position correctly
+	SPRITEMANAGER_ITERATE(THIS_IDX, THIS) {
+		if(!THIS->marked_for_removal) {
+			//No need to call push and pop here, just change the current bank
+			SWITCH_ROM(spriteBanks[THIS->type]);
+
 			DrawSprite(); //this needs to be done using the sprite bank because the animation array is stored there
 		}
 	}
