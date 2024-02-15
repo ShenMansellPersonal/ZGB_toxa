@@ -9,11 +9,11 @@
 
 extern UINT8* bank_stack;
 
-void PushBank(UINT8 b);
-void PopBank(void);
+void PushBank(UINT8 b) NONBANKED;
+void PopBank(void) NONBANKED;
 
-#define PUSH_BANK(N) PushBank(N);
-#define POP_BANK PopBank();
+#define PUSH_BANK(N) PushBank(N)
+#define POP_BANK() PopBank()
 #define REFRESH_BANK SWITCH_ROM(StackPeek(bank_stack))
 
 #endif
