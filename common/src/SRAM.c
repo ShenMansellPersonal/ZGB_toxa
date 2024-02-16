@@ -1,5 +1,3 @@
-#pragma bank 1
-
 #include <string.h>
 
 #include "SRAM.h"
