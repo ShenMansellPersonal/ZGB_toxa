@@ -51,6 +51,7 @@ typedef struct {
 } Sprite;
 
 //Palette flag
+#define SPRITE_GET_CGB_PALETTE(SPRITE) (SPRITE->attr_add & 0x0f)
 #define SPRITE_SET_CGB_PALETTE(SPRITE, PALETTE) SPRITE->attr_add = ((SPRITE->attr_add & 0xF8) | PALETTE | 0x10)
 #define SPRITE_SET_DMG_PALETTE(SPRITE, PALETTE) SPRITE->attr_add = ((SPRITE->attr_add & 0xEF) | (PALETTE << 4))
 
