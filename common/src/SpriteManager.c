@@ -166,11 +166,14 @@ void SpriteManagerFlushRemove(void) {
 	sprite_manager_removal_check = 0;
 }
 
-extern UINT8* oam;
-extern UINT8* oam0;
-extern UINT8* oam1;
+// We need to run a fn after processing all the sprites to sort out nutmegs
+// final animation for this frame (as platforms etc will potentially change her state after her sprite processing)
+extern Sprite* spr_nutmeg;
+void nutmeg_Animate(void) BANKED;
+
 UINT8 THIS_IDX = 0;
 Sprite* THIS = 0;
+
 void SpriteManagerUpdate(void) {
 	UBYTE __save = CURRENT_BANK;
 	SPRITEMANAGER_ITERATE(THIS_IDX, THIS) {
@@ -181,12 +184,18 @@ void SpriteManagerUpdate(void) {
 			spriteUpdateFuncs[THIS->type]();
 
 			if(THIS == scroll_target)
+			{
 				RefreshScroll();
-
-	
+			}
 		}
 	}
 
+	// nutmeg needs to animate after all the other sprites have processed, so they can move her around
+	if (spr_nutmeg != 0)
+	{
+		nutmeg_Animate();
+	}
+	
 	// Draw all the sprites after updates, so we can have nutmeg update her bow position correctly
 	SPRITEMANAGER_ITERATE(THIS_IDX, THIS) {
 		if(!THIS->marked_for_removal) {
