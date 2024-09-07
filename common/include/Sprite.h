@@ -48,6 +48,7 @@ typedef struct {
 
 //Palette flag
 #if defined(NINTENDO)
+#define SPRITE_GET_CGB_PALETTE(SPRITE) (SPRITE->attr_add & 0x0fu)
 #define SPRITE_SET_CGB_PALETTE(SPRITE, PALETTE) SPRITE->attr_add = ((SPRITE->attr_add & 0xF8u) | ((PALETTE) & 0x07u))
 #define SPRITE_SET_DMG_PALETTE(SPRITE, PALETTE) SPRITE->attr_add = ((SPRITE->attr_add & 0xEFu) | (((PALETTE) & 0x01u) << 4))
 #ifdef CGB
