@@ -92,6 +92,9 @@ void SetWindowY(UINT8 y) {
 
 extern UINT8 last_bg_pal_loaded;
 extern UINT8 last_tile_loaded;
+extern UINT8 ___bank_ZGBMain_InitStates;
+extern UINT8 ___bank_ZGBMain_InitSprites;
+
 UINT16 default_palette[] = {RGB(31, 31, 31), RGB(20, 20, 20), RGB(10, 10, 10), RGB(0, 0, 0)};
 void main(void) {
 	static UINT8 __save; 
@@ -112,8 +115,13 @@ void main(void) {
 	__save = CURRENT_BANK;
 	INIT_MUSIC;
 
+	SWITCH_ROM(___bank_ZGBMain_InitStates);
 	InitStates();
+
+	SWITCH_ROM(___bank_ZGBMain_InitSprites);
 	InitSprites();
+
+	
 	SWITCH_ROM(__save);
 	
 	CRITICAL {

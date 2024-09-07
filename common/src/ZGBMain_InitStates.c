@@ -1,3 +1,4 @@
+#pragma bank 1
 #include "ZGBMain.h"
 
 #define _STATE(STATE_ID) DECLARE_STATE(STATE_ID); extern const void __bank_##STATE_ID;
@@ -13,7 +14,7 @@ Void_Func_Void updateFuncs[N_STATES];
 	updateFuncs[STATE_ID] = Update_##STATE_ID;\
 	stateBanks[STATE_ID] = BANK(STATE_ID);
 	
-void InitStates(void) {
+void InitStates(void)  {
 	STATES
 }
 #undef _STATE

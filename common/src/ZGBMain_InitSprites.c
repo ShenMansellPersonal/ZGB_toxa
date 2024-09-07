@@ -1,3 +1,4 @@
+#pragma bank 1
 #include "ZGBMain.h"
 #include "MetaSpriteInfo.h"
 
@@ -27,6 +28,7 @@ UINT8 spritePalsOffset[N_SPRITE_TYPES];
 	spriteDestroyFuncs[SPRITE_ID] = Destroy_##SPRITE_ID; \
 	spriteDataBanks[SPRITE_ID] = BANK(DATA); \
 	spriteDatas[SPRITE_ID] = &DATA;
+	
 void InitSprites(void) {
 	SPRITES
 }
